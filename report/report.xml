@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+            <record id="send_payslip" model="ir.actions.report">
+                <field name="name">Payslip</field>
+                <field name="model">hr.employee</field>
+                <field name="report_type">qweb-pdf</field>
+                <field name="report_name">employee_payslip_send_email.report_send_payslip</field>
+                <field name="report_file">employee_payslip_send_email.report_send_payslip</field>
+            </record>
+    </data>
+</odoo>

@@ -1,0 +1,9 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+hr.access_hr_employee_system_user,hr.employee system user,hr.model_hr_employee,base.group_user,1,0,0,0
+access_wk_hr_payslip_employee,wk.hr.payslip.employee,wk_hr_payroll.model_wk_hr_payslip,base.group_user,1,0,0,0
+access_wk_hr_payslip_worked_days_employee,wk.hr.payslip.worked_days.employee,wk_hr_payroll.model_wk_hr_payslip_worked_days,base.group_user,1,0,0,0
+access_wk_hr_payslip_line_employee,wk.hr.payslip.line.employee,wk_hr_payroll.model_wk_hr_payslip_line,base.group_user,1,0,0,0
+access_wk_hr_payslip_input_employee,wk.hr.payslip.input.employee,wk_hr_payroll.model_wk_hr_payslip_input,base.group_user,1,0,0,0
+access_payslip_send_employee,access.payslip.send.employee,model_payslip_send,base.group_user,1,1,1,0
+access_payslip_wizard_message,access.payslip.wizard.message,model_wizard_message,base.group_user,1,1,1,0

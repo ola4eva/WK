@@ -1,0 +1,70 @@
+<odoo>
+    <data>
+
+        <record id="send_payslip_form" model="ir.ui.view">
+            <field name="name">wk.hr.payslip.form</field>
+            <field name="model">wk.hr.payslip</field>
+            <field name="inherit_id" ref="wk_hr_payroll.view_wk_hr_payslip_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//header" position="inside">
+                    <button name="action_payslip_sent" type="object" string="Send Payslip" class="oe_highlight" groups="base.group_user"/>
+                </xpath>
+                <xpath expr="//button[@name='action_payslip_done']" position="attributes">
+                    <attribute name="groups">wk_hr_payroll.group_hr_payroll_user</attribute>
+                </xpath>
+                <xpath expr="//button[@name='refund_sheet']" position="attributes">
+                    <attribute name="groups">wk_hr_payroll.group_hr_payroll_user</attribute>
+                </xpath>
+                <xpath expr="//button[@name='action_payslip_draft']" position="attributes">
+                    <attribute name="groups">wk_hr_payroll.group_hr_payroll_user</attribute>
+                </xpath>
+                <xpath expr="//button[@name='compute_sheet']" position="attributes">
+                    <attribute name="groups">wk_hr_payroll.group_hr_payroll_user</attribute>
+                </xpath>
+                <xpath expr="//button[@name='action_payslip_cancel']" position="attributes">
+                    <attribute name="groups">wk_hr_payroll.group_hr_payroll_user</attribute>
+                </xpath>
+                <xpath expr="//notebook/page[3]" position="attributes">
+                    <attribute name="groups">wk_hr_payroll.group_hr_payroll_user</attribute>
+                </xpath>
+                <xpath expr="//notebook/page[4]" position="attributes">
+                    <attribute name="groups">wk_hr_payroll.group_hr_payroll_user</attribute>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="payroll_wk_hr_employee_view_form_inherit" model="ir.ui.view">
+            <field name="name">hr.employee.form</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="wk_hr_payroll.payroll_wk_hr_employee_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='%(wk_hr_payroll.act_hr_employee_payslip_list)d']" position="attributes">
+                    <attribute name="groups">base.group_user</attribute>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="action_send_payslips" model="ir.actions.act_window">
+            <field name="name">Send Payslips</field>
+            <field name="res_model">payslip.send</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="context">{'search_default_employee_id': [active_id], 'default_employee_id': active_id}</field>
+            <field name="binding_model_id" ref="hr.model_hr_employee"/>
+            <field name="binding_view_types">list,form</field>
+        </record>
+
+        <record id="action_payslip_sent" model="ir.actions.server">
+                <field name="name">Send Payslips</field>
+                <field name="state">code</field>
+                <field name="model_id" ref="wk_hr_payroll.model_wk_hr_payslip"/>
+                <field name="binding_model_id" ref="wk_hr_payroll.model_wk_hr_payslip"/>
+                <field name="code">
+                    if record:
+                        action = env["wk.hr.payslip"].action_payslip_sent()
+                </field>
+        </record>
+
+        <menuitem id="hr.menu_hr_employee_payroll" name="Payroll" parent="hr.menu_hr_root" groups="hr.group_hr_user,base.group_user" sequence="3"/>
+    </data>
+</odoo>
